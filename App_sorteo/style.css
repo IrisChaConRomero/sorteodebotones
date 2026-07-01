@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.game-container {
+    background-color: #1e293b;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #38bdf8, #818cf8, #e879f9); /* Modern blue to purple/pink gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.choice-btn {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 1.5rem 3rem;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.choice-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.choice-btn:active {
+    transform: translateY(0);
+}
+
+.choice-btn.red {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.choice-btn.blue {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#result-message {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    min-height: 2.5rem;
+}
+
+.win {
+    color: #4ade80; /* green */
+}
+
+.lose {
+    color: #f87171; /* red */
+}
+
+.restart-btn {
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    background-color: #475569;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.restart-btn:hover {
+    background-color: #64748b;
+}
