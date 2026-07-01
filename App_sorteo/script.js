@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnBlue = document.getElementById('btn-blue');
     const btnRestart = document.getElementById('btn-restart');
 
-    const handleChoice = () => {
+    const handleChoice = (e) => {
+        // Disable buttons to prevent multiple clicks
+        btnRed.disabled = true;
+        btnBlue.disabled = true;
+
         // Hide choices and show result container
         choiceContainer.classList.add('hidden');
         resultContainer.classList.remove('hidden');
@@ -16,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isWin = Math.random() >= 0.5;
 
         if (isWin) {
-            resultMessage.textContent = '¡Has ganado!';
+            resultMessage.textContent = '¡Has encontrado el tesoro!';
             resultMessage.className = 'win';
         } else {
-            resultMessage.textContent = 'Has perdido';
+            resultMessage.textContent = 'Has caído por la borda';
             resultMessage.className = 'lose';
         }
     };
@@ -33,5 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         choiceContainer.classList.remove('hidden');
         resultMessage.textContent = '';
         resultMessage.className = '';
+        
+        // Re-enable buttons
+        btnRed.disabled = false;
+        btnBlue.disabled = false;
     });
 });

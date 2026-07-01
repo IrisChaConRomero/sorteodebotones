@@ -6,22 +6,123 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #0f172a;
+    background-color: #0f172a; /* Fallback */
     color: #f8fafc;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden; /* Hide horizontal scroll from ships */
 }
 
+/* --- Pirate Ships and Ocean Background --- */
+.ocean-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #020617 0%, #0f172a 40%, #1e3a8a 100%);
+}
+
+.ship {
+    position: absolute;
+    bottom: 20%;
+    animation: sail linear infinite;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+    user-select: none;
+}
+
+.ship1 {
+    left: -10vw;
+    bottom: 25%;
+    font-size: 6rem;
+    animation-duration: 25s;
+    animation-delay: 0s;
+    z-index: 2;
+}
+
+.ship2 {
+    left: -10vw;
+    bottom: 12%;
+    font-size: 8rem;
+    animation-duration: 35s;
+    animation-delay: -15s;
+    z-index: 4;
+}
+
+.ship3 {
+    left: -10vw;
+    bottom: 35%;
+    font-size: 4rem;
+    animation-duration: 45s;
+    animation-delay: -5s;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+@keyframes sail {
+    0% { transform: translateX(-10vw) translateY(0) rotate(-3deg); }
+    25% { transform: translateX(30vw) translateY(-15px) rotate(3deg); }
+    50% { transform: translateX(60vw) translateY(0) rotate(-2deg); }
+    75% { transform: translateX(90vw) translateY(-10px) rotate(2deg); }
+    100% { transform: translateX(120vw) translateY(0) rotate(-3deg); }
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 200px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%231e40af" opacity=".5"/></svg>') repeat-x;
+    background-size: 50% 100%;
+    animation: wave-animation 15s linear infinite;
+}
+
+.wave1 {
+    z-index: 3;
+    opacity: 0.9;
+    background-position: 0 bottom;
+}
+
+.wave2 {
+    z-index: 1;
+    opacity: 0.6;
+    background-position: 100px bottom;
+    animation: wave-animation 20s linear infinite reverse;
+    height: 250px;
+}
+
+.wave3 {
+    z-index: -1;
+    opacity: 0.3;
+    background-position: 200px bottom;
+    animation: wave-animation 25s linear infinite;
+    height: 300px;
+}
+
+@keyframes wave-animation {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
 .game-container {
-    background-color: #1e293b;
+    background: rgba(30, 41, 59, 0.85); /* Semi-transparent for premium look */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 3rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     text-align: center;
     max-width: 500px;
     width: 90%;
+    position: relative;
+    z-index: 10; /* Above background */
 }
 
 h1 {
@@ -65,11 +166,11 @@ h1 {
 }
 
 .choice-btn.red {
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    background: linear-gradient(135deg, #ef4444, #991b1b);
 }
 
 .choice-btn.blue {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #3b82f6, #1e3a8a);
 }
 
 .hidden {
@@ -96,14 +197,20 @@ h1 {
     font-size: 1.2rem;
     font-weight: 600;
     padding: 1rem 2rem;
-    background-color: #475569;
+    background: linear-gradient(135deg, #475569, #334155);
     color: white;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .restart-btn:hover {
-    background-color: #64748b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.restart-btn:active {
+    transform: translateY(0);
 }
